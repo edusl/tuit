@@ -1,0 +1,317 @@
+/***
+    The new CSS reset - version 1.7.3 (last updated 7.8.2022)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+ *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input, textarea {
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+ display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+ - fix for the content editable attribute will work properly.
+ - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+
+
+
+/* Defaults */
+:root {
+  --font-family: -apple-system, system-ui, sans-serif;
+  --font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+  --color-gray-20: #e0e0e0;
+  --color-gray-50: #C0C0C0;
+  --color-gray-90: #333;
+
+  --background-color: #fff;
+
+  --text-color: var(--color-gray-90);
+  --text-color-link: #082840;
+  --text-color-link-visited: #17050F;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-20: #e0e0e0;
+    --color-gray-50: #C0C0C0;
+    --color-gray-90: #dad8d8;
+
+    /* --text-color is assigned to --color-gray-_ above */
+    --text-color-link: #1493fb;
+    --text-color-link-visited: #a6a6f8;
+
+    --background-color: #15202b;
+  }
+}
+
+
+/* Global stylesheet */
+
+html,
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+a[href] {
+  color: var(--text-color-link);
+}
+a[href]:visited {
+  color: var(--text-color-link-visited);
+}
+
+
+pre,
+code {
+  font-family: var(--font-family-monospace);
+  line-height: 1.5;
+}
+pre {
+  font-size: 14px;
+  line-height: 1.375;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  padding: 1em;
+  margin: .5em 0;
+  background-color: #f6f6f6;
+}
+code {
+  word-break: break-all;
+}
+
+
+/* Infobox */
+:root {
+  --color-infobox: #ffc;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-infobox: #082840;
+  }
+}
+
+
+
+/* util */
+
+.fix {
+	position: fixed;
+}
+
+.hide {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* header */
+
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(255, 255, 255);
+	box-shadow: 4px 4px 4px #ccc;
+	height: 90px;
+}
+
+
+.header__container {
+	max-width: 550px;
+	width: 100%;
+  padding: 0 10px;
+}
+.header__title {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.header__title h1 {
+  font-size: 50%;
+
+}
+
+.header__title em {
+	font-size: 50%;
+	display: block;
+
+}
+
+.header__logo {
+	width: 64px;
+	margin-right: 10px;
+}
+
+.header__left {
+	display: flex;
+	vertical-align: middle;
+	align-items: center;
+}
+
+.tweets {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 64px;
+}
+
+/* tweet */
+
+.tweet {
+
+}
+
+.tweet__options {
+}
+
+.tweet__options img {
+	width: 32px;
+	height: 32px;
+}
+
+.tweet__options ul {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tweet__img {
+	max-width: 100%;
+}
+
+
+/* pagination */
+
+.pagination {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination__list {
+  display: flex;
+
+}
+
+.pagination__item {
+  border: 1px solid;
+  margin: 5px;
+}
+
+.pagination__item a {
+  display: block;
+  padding: 10px 15px;
+}
+
+.pagination__item a:hover,
+.pagination__item a:focus {
+  background-color: var(--color-gray-20);
+  text-decoration: underline;
+}
+
+.pagination__item a[aria-current] {
+  background-color: var(--color-gray-90);
+  color: var(--color-gray-20);
+}
+
+.main {
+	display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 32px 0;
+}
+
+.main__container {
+	max-width: 600px;
+	display: grid;
+	gap: 40px;
+}

@@ -1,0 +1,61 @@
+---
+layout: layouts/home.njk
+data: tweets
+pagination:
+  data: tweets
+  size: 10
+  alias: tweet
+  reverse: true
+  # addAllPagesToCollections: true
+eleventyNavigation:
+  key: Home
+  order: 1
+
+---
+
+<ul class="tweets">
+{%- for item in pagination.items %}
+  <li class="tweet">
+    <img class="tweet__img" src='/img/tweets/{{ item | myFilter }}' alt='' >
+    <div class="tweet__options">
+      <ul>
+        <li><a aria-label="compartir en whatsapp" href="whatsapp://send?text='+encodeURIComponent(http://localhost:8080/img/tweets/{{ item | myFilter }})"><img src="/img/whatsapp.svg" alt=""></a></li>
+        <li><a aria-label="enlace directo al tuit" href="{{ item }}">{{ tweets.items }}</a></li>
+      </ul>
+    </div>
+  </li>
+{% endfor -%}
+</ul>
+
+<nav class="pagination" aria-labelledby="pagination">
+  <h2 class="hide" id="pagination">Paginación</h2>
+  <ol class="pagination__list">
+    {% if page.url != pagination.href.first %}<li class="pagination__item arrows"><a href="{{ pagination.href.first }}">Inicio</a></li>{% endif %}
+    {% if pagination.href.previous %}<li class="pagination__item arrows"><a href="{{ pagination.href.previous }}">Anterior</a></li>{% endif %}
+{%- for pageEntry in pagination.pages %}
+    <li class="pagination__item"><a href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}><span class="hide">Page</span> {{ loop.index }}</a></li>
+{%- endfor %}
+    {% if pagination.href.next %}<li class="pagination__item arrows"><a href="{{ pagination.href.next }}">Siguiente</a></li>{% endif %}
+    {% if page.url != pagination.href.last %}<li class="pagination__item arrows"><a href="{{ pagination.href.last }}">Final</a></li>{% endif %}
+  </ol>
+</nav>
+
+
+<footer>
+  <p>tuitazos.com {% year %}</p>
+  <p>@tuitazoscom | tuitazoscom@gmail.com
+</p>
+
+
+</footer>
+
+
+
+{% set maxPosts = collections.posts.length | min(3) %}
+<h1>Latest {% if maxPosts == 1 %}Post{% else %}{{ maxPosts }} Posts{% endif %}</h1>
+
+{% set postslist = collections.posts | head(-3) %}
+{% set postslistCounter = collections.posts | length %}
+{% include "postslist.njk" %}
+
+<p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>

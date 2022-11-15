@@ -1,4 +1,5 @@
-_site/
+# We don't want Eleventy to include the README.md as a website content file
+README.md
 
-node_modules/
-.idea/
+# Unit tests should be ignored by Eleventy
+tests/

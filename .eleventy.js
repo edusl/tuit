@@ -149,3 +149,9 @@ module.exports = function(eleventyConfig) {
 
 
 };
+module.exports = {
+  dir: {
+      input: "src",
+      output: "docs"
+  }
+};

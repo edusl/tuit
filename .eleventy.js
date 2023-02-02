@@ -143,12 +143,13 @@ module.exports = function(eleventyConfig) {
     // This is only used for link URLs (it does not affect your file structure)
     // Best paired with the `url` filter: https://www.11ty.dev/docs/filters/url/
 
-    // You can also pass this in on the command line using `--pathprefix`
+    // You can also pass this in on the command line using `--pathprefix` ....
 
   };
 
 
 };
+
 module.exports = {
   dir: {
       input: "src",
